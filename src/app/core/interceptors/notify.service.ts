@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
+import {HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {catchError, map, tap} from 'rxjs/operators';
@@ -23,7 +23,7 @@ export class NotifyService implements HttpInterceptor {
         if (err instanceof HttpErrorResponse) {
           const notify: Notify = err.error;
           if (notify.type === NotifyTypeEnum.TOASTR_ERROR) {
-            this.matSnackBar.open(notify.message, notify.type, {duration});
+            this.matSnackBar.open(notify.message, notify.type, {panelClass: 'snack-error', duration});
           }
           return notify.body;
         }
@@ -33,7 +33,7 @@ export class NotifyService implements HttpInterceptor {
         if (evt instanceof HttpResponse) {
           const notify: Notify = evt.body;
           if (notify.type === NotifyTypeEnum.TOASTR_SUCCESS) {
-            this.matSnackBar.open(notify.message, notify.type, {panelClass: 'notify-success', duration});
+            this.matSnackBar.open(notify.message, notify.type, {panelClass: 'snack-success', duration});
           }
           return notify.body;
         }

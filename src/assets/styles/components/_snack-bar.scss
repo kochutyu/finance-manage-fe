@@ -1,0 +1,41 @@
+@include mat-core();
+
+$background-primary: #232323;
+$background-accent: #353535;
+$background-warn: #c1640c;
+$font-color-default: silver;
+
+$my-app-primary: mat-palette($mat-light-green, 700);
+$my-app-accent: mat-palette($mat-cyan, 800 );
+$my-app-warn: mat-palette($mat-red, 400);
+
+
+$my-app-theme: mat-dark-theme($my-app-primary, $my-app-accent, $my-app-warn);
+
+
+@mixin snack-theme($theme) {
+  // Extract whichever individual palettes you need from the theme.
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+
+  .mat-snack-bar-container {
+    background-color: $background-accent !important;
+    color: $font-color-default;
+  }
+  //Added with panelClass property
+  .snack-error {
+    button {
+      color: mat-color($warn)
+    }
+  }
+  //Added with panelClass property
+  .snack-success {
+    button {
+      color: mat-color($primary)
+    }
+  }
+}
+
+@include snack-theme($my-app-theme);
