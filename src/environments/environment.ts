@@ -5,6 +5,9 @@
 export const environment = {
   production: false,
   apiUrl: '',
+  api: {
+    url: 'http://localhost:1000/api/',
+  },
   notify: {
     duration: 9000000
   }

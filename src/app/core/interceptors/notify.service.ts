@@ -15,7 +15,7 @@ export class NotifyService implements HttpInterceptor {
   ) {
   }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
     const {duration} = environment.notify;
     const request = req.clone();
     return next.handle(request).pipe(
