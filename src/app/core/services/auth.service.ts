@@ -14,6 +14,9 @@ export class AuthService extends ApiService {
 
   constructor(private http: HttpClient, private router: Router) {
     super();
+  }
+
+  public initUser(): void {
     this.setBaseUrl('auth/');
     this.updateUser({});
   }
