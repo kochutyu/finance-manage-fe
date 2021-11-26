@@ -1,4 +1,4 @@
-export enum ImageFormatEnum {
-    PNG = 'image/png',
-    JPG = 'image/jpg',
+export enum EImageFormat {
+  PNG = 'image/png',
+  JPG = 'image/jpg',
 }

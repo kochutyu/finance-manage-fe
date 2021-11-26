@@ -3,9 +3,9 @@ import {HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest, HttpRespon
 import {Observable, throwError} from 'rxjs';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {catchError, tap} from 'rxjs/operators';
-import {INotify} from '../interfaces/notify';
+import {INotify} from '../interfaces/notify.interface';
 import {environment} from '../../../environments/environment';
-import {NotifyTypeEnum} from '../enums/notify-type.enum';
+import {ENotifyType} from '../enums/notify-type.enum';
 
 @Injectable()
 export class NotifyInterceptor implements HttpInterceptor {
@@ -22,7 +22,7 @@ export class NotifyInterceptor implements HttpInterceptor {
       catchError((err: any) => {
         if (err instanceof HttpErrorResponse) {
           const notify: INotify = err.error;
-          if (notify.type === NotifyTypeEnum.TOASTR_ERROR) {
+          if (notify.type === ENotifyType.TOASTR_ERROR) {
             this.matSnackBar.open(notify.message, notify.type, {panelClass: 'snack-error', duration});
           }
         }
@@ -31,7 +31,7 @@ export class NotifyInterceptor implements HttpInterceptor {
       tap(evt => {
         if (evt instanceof HttpResponse) {
           const notify: INotify = evt.body;
-          if (notify.type === NotifyTypeEnum.TOASTR_SUCCESS) {
+          if (notify.type === ENotifyType.TOASTR_SUCCESS) {
             this.matSnackBar.open(notify.message, notify.type, {panelClass: 'snack-success', duration});
           }
         }

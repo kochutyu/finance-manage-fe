@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {LocalStorageEnum} from '../enums/local-storage.enum';
+import {ELocalStorage} from '../enums/local-storage.enum';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -10,7 +10,7 @@ export class TokenInterceptor implements HttpInterceptor {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     });
 
-    const token = JSON.parse(localStorage.getItem(LocalStorageEnum.TOKEN));
+    const token = JSON.parse(localStorage.getItem(ELocalStorage.TOKEN));
     if (!!token) {
       authRequest = request.clone({
         headers: new HttpHeaders()

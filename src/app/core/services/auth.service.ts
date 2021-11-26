@@ -2,9 +2,9 @@ import {Injectable} from '@angular/core';
 import {ApiService} from './api.service';
 import {HttpClient} from '@angular/common/http';
 import {filter, pluck} from 'rxjs/operators';
-import {LocalStorageEnum} from '../enums/local-storage.enum';
+import {ELocalStorage} from '../enums/local-storage.enum';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {IUser} from '../interfaces/user';
+import {IUser} from '../interfaces/user.interface';
 import {Router} from '@angular/router';
 
 @Injectable({providedIn: 'root'})
@@ -24,8 +24,8 @@ export class AuthService extends ApiService {
         pluck('body')
       )
       .subscribe(({token, user}: any) => {
-        localStorage.setItem(LocalStorageEnum.TOKEN, JSON.stringify(token));
-        localStorage.setItem(LocalStorageEnum.USER, JSON.stringify(user));
+        localStorage.setItem(ELocalStorage.TOKEN, JSON.stringify(token));
+        localStorage.setItem(ELocalStorage.USER, JSON.stringify(user));
         this.updateUser(user);
       });
   }
@@ -45,12 +45,12 @@ export class AuthService extends ApiService {
   }
 
   public updateUser(params: {}): void {
-    const user = JSON.parse(localStorage.getItem(LocalStorageEnum.USER)) || {};
-    const token = JSON.parse(localStorage.getItem(LocalStorageEnum.TOKEN));
+    const user = JSON.parse(localStorage.getItem(ELocalStorage.USER)) || {};
+    const token = JSON.parse(localStorage.getItem(ELocalStorage.TOKEN));
 
     if (token) {
       Object.assign(user, params);
-      localStorage.setItem(LocalStorageEnum.USER, JSON.stringify(user));
+      localStorage.setItem(ELocalStorage.USER, JSON.stringify(user));
       this.user.next(user);
     } else {
       this.user.next(null);

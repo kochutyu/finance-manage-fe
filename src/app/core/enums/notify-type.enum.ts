@@ -1,4 +1,4 @@
-export enum NotifyTypeEnum {
-    TOASTR_SUCCESS = 'toastr-success',
-    TOASTR_ERROR = 'toastr-error'
+export enum ENotifyType {
+  TOASTR_SUCCESS = 'toastr-success',
+  TOASTR_ERROR = 'toastr-error'
 }
