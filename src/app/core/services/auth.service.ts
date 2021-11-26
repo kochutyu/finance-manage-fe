@@ -1,0 +1,60 @@
+import {Injectable} from '@angular/core';
+import {ApiService} from './api.service';
+import {HttpClient} from '@angular/common/http';
+import {filter, pluck} from 'rxjs/operators';
+import {LocalStorageEnum} from '../enums/local-storage.enum';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {IUser} from '../interfaces/user';
+import {Router} from '@angular/router';
+
+@Injectable({providedIn: 'root'})
+export class AuthService extends ApiService {
+
+  private user = new BehaviorSubject<IUser>(null);
+
+  constructor(private http: HttpClient, private router: Router) {
+    super();
+    this.setBaseUrl('auth/');
+    this.updateUser({});
+  }
+
+  public signInByEmail(email: string, password: string): void {
+    this.http.post(this.getBaseUrl() + 'login', {email, password})
+      .pipe(
+        pluck('body')
+      )
+      .subscribe(({token, user}: any) => {
+        localStorage.setItem(LocalStorageEnum.TOKEN, JSON.stringify(token));
+        localStorage.setItem(LocalStorageEnum.USER, JSON.stringify(user));
+        this.updateUser(user);
+      });
+  }
+
+  public signOut(): void {
+    localStorage.clear();
+    this.updateUser({});
+    this.router.navigate(['/']);
+  }
+
+  public getUser(): IUser {
+    return this.user.getValue();
+  }
+
+  public getUser$(): Observable<IUser> {
+    return this.user.asObservable().pipe(filter(user => !!user));
+  }
+
+  public updateUser(params: {}): void {
+    const user = JSON.parse(localStorage.getItem(LocalStorageEnum.USER)) || {};
+    const token = JSON.parse(localStorage.getItem(LocalStorageEnum.TOKEN));
+
+    if (token) {
+      Object.assign(user, params);
+      localStorage.setItem(LocalStorageEnum.USER, JSON.stringify(user));
+      this.user.next(user);
+    } else {
+      this.user.next(null);
+    }
+  }
+
+}

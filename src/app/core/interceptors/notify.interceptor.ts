@@ -1,14 +1,14 @@
 import {Injectable} from '@angular/core';
 import {HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
-import {Observable, of} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {catchError, map, tap} from 'rxjs/operators';
-import {Notify} from '../interfaces/notify';
+import {catchError, tap} from 'rxjs/operators';
+import {INotify} from '../interfaces/notify';
 import {environment} from '../../../environments/environment';
 import {NotifyTypeEnum} from '../enums/notify-type.enum';
 
 @Injectable()
-export class NotifyService implements HttpInterceptor {
+export class NotifyInterceptor implements HttpInterceptor {
 
   constructor(
     private matSnackBar: MatSnackBar
@@ -21,26 +21,20 @@ export class NotifyService implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((err: any) => {
         if (err instanceof HttpErrorResponse) {
-          const notify: Notify = err.error;
+          const notify: INotify = err.error;
           if (notify.type === NotifyTypeEnum.TOASTR_ERROR) {
             this.matSnackBar.open(notify.message, notify.type, {panelClass: 'snack-error', duration});
           }
-          return notify.body;
         }
-        return of(err);
+        return throwError(err);
       }),
-      map(evt => {
+      tap(evt => {
         if (evt instanceof HttpResponse) {
-          const notify: Notify = evt.body;
+          const notify: INotify = evt.body;
           if (notify.type === NotifyTypeEnum.TOASTR_SUCCESS) {
             this.matSnackBar.open(notify.message, notify.type, {panelClass: 'snack-success', duration});
           }
-          return notify.body;
         }
-        return evt;
-      }),
-      tap((res) => {
-        console.log(res);
       })
     );
   }

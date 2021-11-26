@@ -6,8 +6,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import {AppRoutingModule} from './app-routing.module';
 
-import {ApiEndpointService} from './core/interceptors/api-endpoint.service';
-import {NotifyService} from './core/interceptors/notify.service';
+import {ApiEndpointInterceptor} from './core/interceptors/api-endpoint.interceptor';
+import {NotifyInterceptor} from './core/interceptors/notify.interceptor';
+import {TokenInterceptor} from './core/interceptors/token.interceptor';
 
 import {AppComponent} from './app.component';
 
@@ -23,8 +24,9 @@ import {AppComponent} from './app.component';
     MatSnackBarModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: ApiEndpointService, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: NotifyService, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: ApiEndpointInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: NotifyInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
