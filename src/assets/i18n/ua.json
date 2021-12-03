@@ -1,6 +1,9 @@
 {
   "TOASTR": {
-    "toastr-success": "Success",
-    "toastr-error": "Error"
+    "ERROR": "Помилка",
+    "SUCCESS": "Успіх"
+  },
+  "NOTIFY": {
+    "success_user_login": "Вас авторизовано!"
   }
 }

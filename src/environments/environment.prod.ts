@@ -6,15 +6,16 @@ import {TranslateMissingKeyService} from '../app/core/services/translate-missing
 
 export const environment = {
   production: false,
-  apiUrl: '',
   api: {
     url: 'http://localhost:1000/api/',
   },
   notify: {
-    duration: 5000
+    duration: 5000,
+    triggerDelay: 500
   },
   translate: {
-    locales: [ELocale.ENGLISH, ELocale.UKRAINIAN],
+    defaultLanguage: ELocale.ENGLISH,
+    languages: [ELocale.ENGLISH, ELocale.UKRAINIAN],
     forRoot: {
       loader: {
         provide: TranslateLoader,
@@ -24,5 +25,6 @@ export const environment = {
       missingTranslationHandler: {provide: MissingTranslationHandler, useClass: TranslateMissingKeyService},
       defaultLanguage: ELocale.ENGLISH,
     }
-  }
+  },
+  skipEndpoints: ['./assets/', 'purecatamphetamine.github.io']
 };

@@ -1,7 +1,9 @@
 {
-  "test": "Lorem 50 1123 123",
   "TOASTR": {
-    "toastr-success": "Success",
-    "toastr-error": "Error"
+    "ERROR": "Error",
+    "SUCCESS": "Success"
+  },
+  "NOTIFY": {
+    "success_user_login": "Success user login!"
   }
 }

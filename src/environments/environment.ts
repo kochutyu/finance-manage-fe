@@ -10,16 +10,16 @@ import {TranslateMissingKeyService} from '../app/core/services/translate-missing
 
 export const environment = {
   production: false,
-  apiUrl: '',
   api: {
     url: 'http://localhost:1000/api/',
   },
   notify: {
-    duration: 5000
+    duration: 5000,
+    triggerDelay: 500
   },
   translate: {
-    defaultLocale: ELocale.ENGLISH,
-    locales: [ELocale.ENGLISH, ELocale.UKRAINIAN],
+    defaultLanguage: ELocale.ENGLISH,
+    languages: [ELocale.ENGLISH, ELocale.UKRAINIAN],
     forRoot: {
       loader: {
         provide: TranslateLoader,
@@ -30,7 +30,7 @@ export const environment = {
       defaultLanguage: ELocale.ENGLISH,
     }
   },
-  skipEndpoints: ['./assets/']
+  skipEndpoints: ['./assets/', 'purecatamphetamine.github.io']
 };
 
 /*

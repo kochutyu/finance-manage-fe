@@ -9,9 +9,10 @@ export class TranslateInitService {
   }
 
   public initLocale(): void {
-    const locale = JSON.parse(localStorage.getItem(ELocalStorage.LOCALE));
+    const locale = JSON.parse(localStorage.getItem(ELocalStorage.LANGUAGE));
     const currencyLocale = locale ? locale : environment.translate.forRoot.defaultLanguage;
+    this.translateService.addLangs(environment.translate.languages);
     this.translateService.use(currencyLocale);
-    localStorage.setItem(ELocalStorage.LOCALE, JSON.stringify(currencyLocale));
+    localStorage.setItem(ELocalStorage.LANGUAGE, JSON.stringify(currencyLocale));
   }
 }

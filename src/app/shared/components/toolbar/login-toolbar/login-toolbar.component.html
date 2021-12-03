@@ -1,0 +1,11 @@
+<mat-toolbar-row *ngIf="authService.getUser$() | async as user" color="primary">
+  <mat-toolbar-row class="space-between">
+    <span>{{'financeManagement' | translate}}</span>
+    <div class="right-side">
+      <span class="right-side__user">
+        <strong>{{'user' | translate}}</strong>: <span>{{user.id || '-'}}</span>
+      </span>
+      <app-language-select></app-language-select>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar-row>
