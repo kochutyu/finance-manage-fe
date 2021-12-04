@@ -1,1 +1,46 @@
-<app-in-progress></app-in-progress>
+<!--<app-in-progress></app-in-progress>-->
+<mat-grid-list cols="4" rowHeight="100px">
+  <mat-grid-tile
+    *ngFor="let tile of tiles"
+    [colspan]="tile.cols"
+    [rowspan]="tile.rows"
+    [style.background]="tile.color"
+  >
+    <div class="grid-item">
+      <ng-container
+        *ngIf="tile.text === 'USER_PROFILE.LOGO'"
+        [ngTemplateOutlet]="logoTemplate"
+        [ngTemplateOutletContext]="{ title: tile.text }"
+      ></ng-container>
+      <ng-container
+        *ngIf="tile.text === 'USER_PROFILE.GENERAL_INFO'"
+        [ngTemplateOutlet]="generalInfoTemplate"
+        [ngTemplateOutletContext]="{ title: tile.text }"
+      ></ng-container>
+      <ng-container
+        *ngIf="tile.text === 'USER_PROFILE.FOOTER'"
+        [ngTemplateOutlet]="footerTemplate"
+        [ngTemplateOutletContext]="{ title: tile.text }"
+      ></ng-container>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<ng-template #logoTemplate let-title="title">
+  <mat-card>
+    <mat-card-title>{{ title | translate }}</mat-card-title>
+    <mat-card-subtitle>Start</mat-card-subtitle>
+    <mat-card-content>
+
+      <app-upload-image [preview]="true" #uploadImage></app-upload-image>
+      <button mat-mini-fab (click)="uploadImage.clear()">
+        <mat-icon>restart_alt</mat-icon>
+      </button>
+
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+
+<ng-template #generalInfoTemplate></ng-template>
+
+<ng-template #footerTemplate></ng-template>

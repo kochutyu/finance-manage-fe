@@ -64,5 +64,8 @@
     "PROFILE": "Profile",
     "TEAMS": "Teams",
     "LOG_OUT": "Log Out"
+  },
+  "USER_PROFILE": {
+    "LOGO": "Logo image"
   }
 }

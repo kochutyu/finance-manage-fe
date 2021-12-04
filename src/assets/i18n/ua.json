@@ -63,6 +63,9 @@
     "INTEGRATIONS": "Integrations",
     "PROFILE": "Profile",
     "TEAMS": "Teams",
-    "NAV_SIDE": "Log Out"
+    "LOG_OUT": "Log Out"
+  },
+  "USER_PROFILE": {
+    "LOGO": "Logo image"
   }
 }

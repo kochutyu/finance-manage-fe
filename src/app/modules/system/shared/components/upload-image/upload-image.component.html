@@ -1,0 +1,7 @@
+<div class="logo" [class.preview]="imageUrl && preview" [ngStyle]="{
+        'background-image': 'url(' + imageUrl + ')'
+      }"
+     (click)="logoRef.click()">
+  <mat-icon *ngIf="!preview">download</mat-icon>
+  <input type="file" (change)="changeImage($event)" #logoRef>
+</div>
