@@ -10,6 +10,10 @@
     <mat-label>{{ "SIGN_UP.ENTER_YOUR_EMAIL" | translate }}</mat-label>
     <input matInput formControlName="email"/>
   </mat-form-field>
+  <app-control-message-invalid
+    [control]="signUpForm.get('email')"
+    [formLabel]="'SIGN_UP.EMAIL' | translate"
+  ></app-control-message-invalid>
 
   <mat-form-field appearance="fill">
     <mat-label>{{ "SIGN_UP.ENTER_YOUR_PASSWORD" | translate }}</mat-label>
@@ -24,9 +28,31 @@
       <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
     </button>
   </mat-form-field>
+  <app-control-message-invalid
+    [control]="signUpForm.get('password')"
+    [formLabel]="'SIGN_UP.PASSWORD' | translate"
+  ></app-control-message-invalid>
+
+  <mat-form-field appearance="fill">
+    <mat-label>{{ "SIGN_UP.CONFIRM_YOUR_PASSWORD" | translate }}</mat-label>
+    <input matInput formControlName="confirmPassword" [type]="hide ? 'password' : 'text'"/>
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hide = !hide"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide"
+    >
+      <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+    </button>
+  </mat-form-field>
+  <app-control-message-invalid
+    [control]="signUpForm.get('confirmPassword')"
+    [formLabel]="'SIGN_UP.CONFIRM_PASSWORD' | translate"
+  ></app-control-message-invalid>
 
   <div class="child-center">
-    <button mat-raised-button color="primary" type="submit" [disabled]="signUpForm.invalid">
+    <button mat-raised-button color="primary" type="submit">
       {{ "SIGN_UP.SUBMIT_BTN" | translate }}
     </button>
   </div>

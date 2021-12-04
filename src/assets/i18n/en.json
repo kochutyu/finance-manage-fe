@@ -5,8 +5,11 @@
   },
   "NOTIFY": {
     "success_user_login": "Success user login!",
+    "success_user_registered": "User successfully has been registered",
     "error_password_not_matched": "Password not matched!",
-    "user_not_found": "User not found!"
+    "user_not_found": "User not found!",
+    "error_user_exist": "User already exist!",
+    "PROVIDE_API": "Provide API"
   },
   "TOOLBAR": {
     "PROJECT_NAME": "Finance manage",
@@ -18,17 +21,34 @@
     "ENTER_YOUR_EMAIL": "Enter your email",
     "ENTER_YOUR_PASSWORD": "Enter your password",
     "RESET_PASSWORD": "Reset password",
-    "SUBMIT_BTN": "Submit"
+    "SUBMIT_BTN": "Submit",
+    "EMAIL": "Email",
+    "PASSWORD": "Password"
   },
   "SIGN_UP": {
     "SIGN_UP_TITLE": "Sign Up",
     "ENTER_YOUR_EMAIL": "Enter your email",
     "ENTER_YOUR_PASSWORD": "Enter your password",
-    "SUBMIT_BTN": "Submit"
+    "CONFIRM_YOUR_PASSWORD": "Confirm your password",
+    "SUBMIT_BTN": "Submit",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "CONFIRM_PASSWORD": "Confirm password"
   },
   "RESET_PASSWORD": {
     "RESET_PASSWORD_TITLE": "Reset password",
     "ENTER_YOUR_EMAIL": "Enter your email",
-    "SUBMIT_BTN": "Next"
+    "SUBMIT_BTN": "Next",
+    "EMAIL": "Email"
+  },
+  "VALIDATION": {
+    "REQUIRED": "{{formLabel}} is <strong>required</strong>",
+    "MIN_LENGTH": "{{formLabel}} must contain {{requiredLength}} at least required char",
+    "MAX_LENGTH": "{{formLabel}} has To Be Shorter Than {{requiredLength}} characters",
+    "INVALID_EMAIL": "Please enter a valid email",
+    "MIN": "Minimum number is {{min}}",
+    "MAX": "Maximum number is {{max}}",
+    "INVALID_PASSWORD": "Invalid password",
+    "CONFIRM_PASSWORD_NOT_MATCHED": "Confirm password not matched"
   }
 }

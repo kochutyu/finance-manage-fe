@@ -1,0 +1,6 @@
+<mat-error *ngIf="control.invalid && (control.touched || (control.dirty && forceShow)) && errorMessage">
+  <span [innerHTML]="
+        (errorMessage && errorMessage.message ? (errorMessage.message | translate:errorMessage.translateParam) : '') | safeHtml
+        "
+  ></span>
+</mat-error>

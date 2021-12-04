@@ -9,7 +9,6 @@ import {Router} from '@angular/router';
 
 @Injectable({providedIn: 'root'})
 export class AuthService extends ApiService {
-
   private user = new BehaviorSubject<IUser>(null);
 
   constructor(private http: HttpClient, private router: Router) {
@@ -21,13 +20,35 @@ export class AuthService extends ApiService {
     this.updateUser({});
   }
 
-  public signInByEmail({email, password}: { email: string, password: string }): Observable<any> {
-    return this.http.post(this.getBaseUrl() + 'login', {email, password})
-      .pipe(pluck('body'), tap(({token, user}: any) => {
-        localStorage.setItem(ELocalStorage.TOKEN, JSON.stringify(token));
-        localStorage.setItem(ELocalStorage.USER, JSON.stringify(user));
-        this.updateUser(user);
-      }));
+  public registerByEmail({
+                           email,
+                           password,
+                         }: {
+    email: string;
+    password: string;
+  }): Observable<IUser> {
+    return this.http
+      .post(this.getBaseUrl() + 'register', {email, password})
+      .pipe(pluck('body'));
+  }
+
+  public signInByEmail({
+                         email,
+                         password,
+                       }: {
+    email: string;
+    password: string;
+  }): Observable<any> {
+    return this.http
+      .post(this.getBaseUrl() + 'login', {email, password})
+      .pipe(
+        pluck('body'),
+        tap(({token, user}: any) => {
+          localStorage.setItem(ELocalStorage.TOKEN, JSON.stringify(token));
+          localStorage.setItem(ELocalStorage.USER, JSON.stringify(user));
+          this.updateUser(user);
+        })
+      );
   }
 
   public signOut(): void {
@@ -41,7 +62,7 @@ export class AuthService extends ApiService {
   }
 
   public getUser$(): Observable<IUser> {
-    return this.user.asObservable().pipe(filter(user => !!user));
+    return this.user.asObservable().pipe(filter((user) => !!user));
   }
 
   public updateUser(params: {}): void {
@@ -56,5 +77,4 @@ export class AuthService extends ApiService {
       this.user.next(null);
     }
   }
-
 }

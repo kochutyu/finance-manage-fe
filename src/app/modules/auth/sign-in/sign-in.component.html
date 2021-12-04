@@ -10,6 +10,10 @@
     <mat-label>{{ "SIGN_UP.ENTER_YOUR_EMAIL" | translate }}</mat-label>
     <input matInput formControlName="email"/>
   </mat-form-field>
+  <app-control-message-invalid
+    [control]="signInForm.get('email')"
+    [formLabel]="'SIGN_IN.EMAIL' | translate"
+  ></app-control-message-invalid>
 
   <mat-form-field appearance="fill">
     <mat-label>{{ "SIGN_IN.ENTER_YOUR_PASSWORD" | translate }}</mat-label>
@@ -28,14 +32,13 @@
       <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
     </button>
   </mat-form-field>
+  <app-control-message-invalid
+    [control]="signInForm.get('password')"
+    [formLabel]="'SIGN_IN.PASSWORD' | translate"
+  ></app-control-message-invalid>
 
   <div class="child-center">
-    <button
-      mat-raised-button
-      color="primary"
-      type="submit"
-      [disabled]="signInForm.invalid"
-    >
+    <button mat-raised-button color="primary" type="submit">
       {{ "SIGN_IN.SUBMIT_BTN" | translate }}
     </button>
     <a mat-raised-button routerLink="/auth/reset-password">

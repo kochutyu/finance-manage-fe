@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, FormGroupDirective, Validators} from '@angular/forms';
-import {AuthService} from "../../../core/services/auth.service";
+import {FormBuilder, FormGroup, FormGroupDirective} from '@angular/forms';
+
+import {AuthService} from '../../../core/services/auth.service';
+import {ValidationService} from '../../../core/services/validation/validation.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,10 +13,7 @@ export class SignInComponent implements OnInit {
   signInForm: FormGroup;
   hide = true;
 
-  constructor(
-    private authService: AuthService,
-    private fb: FormBuilder
-  ) {
+  constructor(private authService: AuthService, private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
@@ -27,13 +26,21 @@ export class SignInComponent implements OnInit {
         this.signInForm.reset();
         formGroupDirective.resetForm();
       });
+    } else {
+      ValidationService.validateForm(this.signInForm.controls);
     }
   }
 
   private initSignInForm(): void {
     this.signInForm = this.fb.group({
-      email: this.fb.control('', [Validators.required, Validators.email]),
-      password: this.fb.control('', [Validators.required]),
+      email: this.fb.control('kochutyura.dev.1@gmail.com', [
+        ValidationService.required,
+        ValidationService.emailValidator(),
+      ]),
+      password: this.fb.control('Qwerty18!', [
+        ValidationService.required,
+        ValidationService.passwordValidator(),
+      ]),
     });
   }
 }
