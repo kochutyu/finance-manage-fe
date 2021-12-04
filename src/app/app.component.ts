@@ -19,8 +19,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.initUser();
     this.translateInitService.initLocale();
     this.registerIconService.initIcons();
+    this.authService.initUser();
   }
 }

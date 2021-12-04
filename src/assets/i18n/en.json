@@ -9,7 +9,8 @@
     "error_password_not_matched": "Password not matched!",
     "user_not_found": "User not found!",
     "error_user_exist": "User already exist!",
-    "PROVIDE_API": "Provide API"
+    "PROVIDE_API": "Provide API",
+    "WELCOME": "Welcome to \"Finance Manage\""
   },
   "TOOLBAR": {
     "PROJECT_NAME": "Finance manage",

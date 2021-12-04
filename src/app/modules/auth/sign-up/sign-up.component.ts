@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, FormGroupDirective, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, FormGroupDirective, Validators,} from '@angular/forms';
 import {AuthService} from '../../../core/services/auth.service';
 import {ValidationService} from '../../../core/services/validation/validation.service';
+import {ToasrtService} from '../../../core/services/toasrt.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -12,7 +13,11 @@ export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
   hide = true;
 
-  constructor(private authService: AuthService, private fb: FormBuilder) {
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private toasrtService: ToasrtService
+  ) {
   }
 
   ngOnInit(): void {
@@ -26,7 +31,9 @@ export class SignUpComponent implements OnInit {
       this.authService.registerByEmail(data).subscribe((user) => {
         this.signUpForm.reset();
         formGroupDirective.resetForm();
-        console.log(user);
+        this.toasrtService.trigger(() => {
+          this.toasrtService.success('NOTIFY.WELCOME');
+        });
       });
     } else {
       ValidationService.validateForm(this.signUpForm.controls);

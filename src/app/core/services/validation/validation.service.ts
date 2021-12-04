@@ -93,8 +93,6 @@ export class ValidationService extends Validators {
       if (control.value && control.value.length > 255) {
         return {maxlength: {requiredLength: 255}};
       }
-      console.log(control.value &&
-        !control.value.match(ValidationService.regExp.email))
       if (
         control.value &&
         !control.value.match(ValidationService.regExp.email)

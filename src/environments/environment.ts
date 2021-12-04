@@ -11,11 +11,11 @@ import {TranslateMissingKeyService} from '../app/core/services/translate-missing
 export const environment = {
   production: false,
   api: {
-    url: 'http://localhost:1000/api/',
+    url: 'http://localhost:2000/api/',
   },
   notify: {
     duration: 5000,
-    triggerDelay: 500
+    triggerDelay: 2000
   },
   translate: {
     defaultLanguage: ELocale.ENGLISH,

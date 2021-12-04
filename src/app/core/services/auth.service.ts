@@ -26,16 +26,19 @@ export class AuthService extends ApiService {
                          }: {
     email: string;
     password: string;
-  }): Observable<IUser> {
+  }): Observable<any> {
     return this.http
       .post(this.getBaseUrl() + 'register', {email, password})
-      .pipe(pluck('body'));
+      .pipe(
+        pluck('body'),
+        tap((response) => this.login(response))
+      );
   }
 
-  public signInByEmail({
-                         email,
-                         password,
-                       }: {
+  signInByEmail({
+                  email,
+                  password,
+                }: {
     email: string;
     password: string;
   }): Observable<any> {
@@ -43,29 +46,25 @@ export class AuthService extends ApiService {
       .post(this.getBaseUrl() + 'login', {email, password})
       .pipe(
         pluck('body'),
-        tap(({token, user}: any) => {
-          localStorage.setItem(ELocalStorage.TOKEN, JSON.stringify(token));
-          localStorage.setItem(ELocalStorage.USER, JSON.stringify(user));
-          this.updateUser(user);
-        })
+        tap((response) => this.login(response))
       );
   }
 
-  public signOut(): void {
+  signOut(): void {
     localStorage.clear();
-    this.updateUser({});
+    this.updateUser(null);
     this.router.navigate(['/']);
   }
 
-  public getUser(): IUser {
+  getUser(): IUser {
     return this.user.getValue();
   }
 
-  public getUser$(): Observable<IUser> {
+  getUser$(): Observable<IUser> {
     return this.user.asObservable().pipe(filter((user) => !!user));
   }
 
-  public updateUser(params: {}): void {
+  updateUser(params: {}): void {
     const user = JSON.parse(localStorage.getItem(ELocalStorage.USER)) || {};
     const token = JSON.parse(localStorage.getItem(ELocalStorage.TOKEN));
 
@@ -73,8 +72,17 @@ export class AuthService extends ApiService {
       Object.assign(user, params);
       localStorage.setItem(ELocalStorage.USER, JSON.stringify(user));
       this.user.next(user);
-    } else {
-      this.user.next(null);
     }
+  }
+
+  isAuthorized(): boolean {
+    return !!this.getUser();
+  }
+
+  private login({token, user}: any): void {
+    localStorage.setItem(ELocalStorage.TOKEN, JSON.stringify(token));
+    localStorage.setItem(ELocalStorage.USER, JSON.stringify(user));
+    this.updateUser(user);
+    this.router.navigate(['/system']);
   }
 }
