@@ -1,0 +1,22 @@
+.sign-up {
+  min-width: 280px;
+  max-width: 540px;
+  width: 100%;
+
+  h1 {
+    color: #333333;
+    text-align: center;
+  }
+
+  mat-form-field {
+    display: block;
+    max-width: inherit;
+  }
+
+  .child-center {
+    button {
+      max-width: 150px;
+      width: 100%;
+    }
+  }
+}

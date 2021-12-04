@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from './api.service';
 import {HttpClient} from '@angular/common/http';
-import {filter, pluck} from 'rxjs/operators';
+import {filter, pluck, tap} from 'rxjs/operators';
 import {ELocalStorage} from '../enums/local-storage.enum';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {IUser} from '../interfaces/user.interface';
@@ -21,16 +21,13 @@ export class AuthService extends ApiService {
     this.updateUser({});
   }
 
-  public signInByEmail(email: string, password: string): void {
-    this.http.post(this.getBaseUrl() + 'login', {email, password})
-      .pipe(
-        pluck('body')
-      )
-      .subscribe(({token, user}: any) => {
+  public signInByEmail({email, password}: { email: string, password: string }): Observable<any> {
+    return this.http.post(this.getBaseUrl() + 'login', {email, password})
+      .pipe(pluck('body'), tap(({token, user}: any) => {
         localStorage.setItem(ELocalStorage.TOKEN, JSON.stringify(token));
         localStorage.setItem(ELocalStorage.USER, JSON.stringify(user));
         this.updateUser(user);
-      });
+      }));
   }
 
   public signOut(): void {

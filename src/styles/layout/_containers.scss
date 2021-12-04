@@ -3,6 +3,10 @@ mat-card {
     display: block;
     margin: 1em 2em;
     min-height: calc(100vh - 64px - 4em);
+
+    &.auto {
+      display: inline-block;
+    }
   }
 }
 

@@ -1,1 +1,45 @@
-<p>sign-in works!</p>
+<form
+  [formGroup]="signInForm"
+  (ngSubmit)="signIn(formGroupDirective)"
+  #formGroupDirective="ngForm"
+  class="sign-in"
+>
+  <h1>{{ "SIGN_IN.SIGN_IN_TITLE" | translate }}</h1>
+
+  <mat-form-field appearance="fill">
+    <mat-label>{{ "SIGN_UP.ENTER_YOUR_EMAIL" | translate }}</mat-label>
+    <input matInput formControlName="email"/>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>{{ "SIGN_IN.ENTER_YOUR_PASSWORD" | translate }}</mat-label>
+    <input
+      matInput
+      formControlName="password"
+      [type]="hide ? 'password' : 'text'"
+    />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hide = !hide"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide"
+    >
+      <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <div class="child-center">
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="signInForm.invalid"
+    >
+      {{ "SIGN_IN.SUBMIT_BTN" | translate }}
+    </button>
+    <a mat-raised-button routerLink="/auth/reset-password">
+      {{ "SIGN_IN.RESET_PASSWORD" | translate }}
+    </a>
+  </div>
+</form>

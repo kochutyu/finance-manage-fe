@@ -1,14 +1,34 @@
 {
   "TOASTR": {
-    "ERROR": "Помилка",
-    "SUCCESS": "Успіх"
+    "ERROR": "Error",
+    "SUCCESS": "Success"
   },
   "NOTIFY": {
-    "success_user_login": "Вас авторизовано!"
+    "success_user_login": "Success user login!",
+    "error_password_not_matched": "Password not matched!",
+    "user_not_found": "User not found!"
   },
   "TOOLBAR": {
-    "PROJECT_NAME": "Управління фінансами",
-    "SIGN_UP": "Реєстрація",
-    "SIGN_IN": "Вхід"
+    "PROJECT_NAME": "Finance manage",
+    "SIGN_UP": "Sign Up",
+    "SIGN_IN": "Sign In"
+  },
+  "SIGN_IN": {
+    "SIGN_IN_TITLE": "Sign In",
+    "ENTER_YOUR_EMAIL": "Enter your email",
+    "ENTER_YOUR_PASSWORD": "Enter your password",
+    "RESET_PASSWORD": "Reset password",
+    "SUBMIT_BTN": "Submit"
+  },
+  "SIGN_UP": {
+    "SIGN_UP_TITLE": "Sign Up",
+    "ENTER_YOUR_EMAIL": "Enter your email",
+    "ENTER_YOUR_PASSWORD": "Enter your password",
+    "SUBMIT_BTN": "Submit"
+  },
+  "RESET_PASSWORD": {
+    "RESET_PASSWORD_TITLE": "Reset password",
+    "ENTER_YOUR_EMAIL": "Enter your email",
+    "SUBMIT_BTN": "Next"
   }
 }
