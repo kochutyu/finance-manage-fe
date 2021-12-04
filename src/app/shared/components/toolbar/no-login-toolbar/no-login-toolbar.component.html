@@ -1,6 +1,13 @@
-<mat-toolbar-row color="primary">
-  <mat-toolbar-row class="space-between">
-    <span>{{ "financeManagement" | translate }}</span>
-    <app-language-select></app-language-select>
-  </mat-toolbar-row>
-</mat-toolbar-row>
+<mat-toolbar color="primary">
+  <a class="link-home" routerLink="/auth">
+    {{ "TOOLBAR.PROJECT_NAME" | translate }}
+  </a>
+  <span class="spacer"></span>
+  <app-language-select></app-language-select>
+  <a mat-button routerLink="/auth/sign-up">
+    {{ "TOOLBAR.SIGN_UP" | translate }}
+  </a>
+  <a mat-button routerLink="/auth/sign-in">
+    {{ "TOOLBAR.SIGN_IN" | translate }}
+  </a>
+</mat-toolbar>

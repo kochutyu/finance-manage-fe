@@ -5,5 +5,10 @@
   },
   "NOTIFY": {
     "success_user_login": "Success user login!"
+  },
+  "TOOLBAR": {
+    "PROJECT_NAME": "Finance manage",
+    "SIGN_UP": "Sign Up",
+    "SIGN_IN": "Sign In"
   }
 }

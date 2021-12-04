@@ -5,5 +5,10 @@
   },
   "NOTIFY": {
     "success_user_login": "Вас авторизовано!"
+  },
+  "TOOLBAR": {
+    "PROJECT_NAME": "Управління фінансами",
+    "SIGN_UP": "Реєстрація",
+    "SIGN_IN": "Вхід"
   }
 }
