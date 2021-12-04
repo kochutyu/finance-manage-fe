@@ -5,6 +5,7 @@ import {SharedMaterialModule} from './shared-material.module';
 import {SafeHtmlModule} from '../pipes/safe-html/safe-html.module';
 import {PreventDefaultModule} from '../directives/prevent-default/prevent-default.module';
 import {StopPropagationModule} from '../directives/stop-propagation/stop-propagation.module';
+import {InProgressModule} from '../components/in-progress/in-progress.module';
 
 const modules = [
   CommonModule,
@@ -13,6 +14,7 @@ const modules = [
   SafeHtmlModule,
   PreventDefaultModule,
   StopPropagationModule,
+  InProgressModule,
 ];
 
 @NgModule({
