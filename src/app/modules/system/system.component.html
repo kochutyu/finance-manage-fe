@@ -1,1 +1,24 @@
-<p>system works!</p>
+<div class="background light-gray">
+  <app-login-toolbar></app-login-toolbar>
+
+  <mat-drawer-container class="example-container" autosize>
+
+
+    <mat-drawer #drawer [(opened)]="showSideNav" mode="side">
+      <app-side-nav [drawer]="drawer"></app-side-nav>
+    </mat-drawer>
+
+    <main>
+      <button class="side-btn" [class.open-side-nav]="showSideNav" (click)="showSideNav = !showSideNav" mat-mini-fab
+              aria-label="Side btn">
+        <mat-icon>{{showSideNav ? 'west' : 'trending_flat'}}</mat-icon>
+      </button>
+      <mat-card class="container">
+        <router-outlet></router-outlet>
+      </mat-card>
+    </main>
+
+
+  </mat-drawer-container>
+
+</div>

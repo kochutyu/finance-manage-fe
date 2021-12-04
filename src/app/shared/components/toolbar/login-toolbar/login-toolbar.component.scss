@@ -1,7 +1,16 @@
 :host {
-  .right-side {
-    &__user {
-      margin-right: 50px;
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  .link {
+    &-home {
+      color: #ffffff;
+      text-decoration: none;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }

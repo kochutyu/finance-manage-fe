@@ -1,7 +1,7 @@
 {
   "TOASTR": {
-    "ERROR": "Error",
-    "SUCCESS": "Success"
+    "ERROR": "Error \uD83D\uDE25",
+    "SUCCESS": "Success \uD83D\uDE00"
   },
   "NOTIFY": {
     "success_user_login": "Success user login!",
@@ -51,5 +51,18 @@
     "MAX": "Maximum number is {{max}}",
     "INVALID_PASSWORD": "Invalid password",
     "CONFIRM_PASSWORD_NOT_MATCHED": "Confirm password not matched"
+  },
+  "NAV_SIDE": {
+    "GENERAL": "General",
+    "BALANCE": "Balance",
+    "WALLET": "Wallet",
+    "CATEGORIES": "Categories",
+    "OTHER": "Other",
+    "DASHBOARD": "Dashboard",
+    "SETTINGS": "Settings",
+    "INTEGRATIONS": "Integrations",
+    "PROFILE": "Profile",
+    "TEAMS": "Teams",
+    "NAV_SIDE": "Log Out"
   }
 }

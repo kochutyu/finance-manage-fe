@@ -6,6 +6,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./system.component.scss']
 })
 export class SystemComponent implements OnInit {
+  showSideNav = false;
 
   constructor() {
   }

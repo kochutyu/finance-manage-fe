@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from './api.service';
 import {HttpClient} from '@angular/common/http';
-import {filter, pluck, tap} from 'rxjs/operators';
+import {filter, map, pluck, tap} from 'rxjs/operators';
 import {ELocalStorage} from '../enums/local-storage.enum';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {IUser} from '../interfaces/user.interface';
@@ -50,10 +50,11 @@ export class AuthService extends ApiService {
       );
   }
 
-  signOut(): void {
-    localStorage.clear();
+  logOut(): void {
+    localStorage.removeItem(ELocalStorage.USER);
+    localStorage.removeItem(ELocalStorage.TOKEN);
     this.updateUser(null);
-    this.router.navigate(['/']);
+    this.router.navigate(['/auth']);
   }
 
   getUser(): IUser {
@@ -62,6 +63,10 @@ export class AuthService extends ApiService {
 
   getUser$(): Observable<IUser> {
     return this.user.asObservable().pipe(filter((user) => !!user));
+  }
+
+  isAuthorized$(): Observable<boolean> {
+    return this.user.asObservable().pipe(map(user => !!user));
   }
 
   updateUser(params: {}): void {

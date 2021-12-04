@@ -22,5 +22,6 @@ export class AppComponent implements OnInit {
     this.translateInitService.initLocale();
     this.registerIconService.initIcons();
     this.authService.initUser();
+    this.authService.isAuthorized$().subscribe(isAuth => console.log({isAuth}));
   }
 }

@@ -1,0 +1,31 @@
+<mat-nav-list>
+
+  <div mat-subheader>{{'NAV_SIDE.GENERAL' | translate}}</div>
+  <a [routerLink]="other.routerLink " routerLinkActive="active" *ngFor="let other of general">
+    <mat-list-item (click)="drawer.toggle()">
+      <mat-icon class="title" mat-list-icon>{{other.icon}}</mat-icon>
+      <div class="title" mat-line>{{other.title | translate}}</div>
+      <div class="subtitle" mat-line> {{other.subtitle}} </div>
+    </mat-list-item>
+  </a>
+  <mat-divider></mat-divider>
+
+  <div mat-subheader>{{'NAV_SIDE.OTHER' | translate}}</div>
+  <a [routerLink]="other.routerLink" routerLinkActive="active" *ngFor="let other of others">
+    <mat-list-item (click)="drawer.toggle()">
+      <mat-icon mat-list-icon>{{other.icon}}</mat-icon>
+      <div mat-line>{{other.title | translate}}</div>
+      <div mat-line> {{other.subtitle | date}} </div>
+    </mat-list-item>
+  </a>
+  <mat-divider></mat-divider>
+
+  <a class="log-out" (click)="authService.logOut()" preventDefault>
+    <mat-list-item (click)="drawer.toggle()">
+      <mat-icon mat-list-icon>logout</mat-icon>
+      <div mat-line>{{'NAV_SIDE.LOG_OUT' | translate}}</div>
+      <div mat-line></div>
+    </mat-list-item>
+  </a>
+
+</mat-nav-list>

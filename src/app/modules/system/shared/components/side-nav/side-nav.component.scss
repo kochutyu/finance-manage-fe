@@ -1,0 +1,29 @@
+.title {
+  color: #ff4081;
+}
+
+.subtitle {
+  color: #a9a4a4;
+}
+
+.active {
+  mat-list-item {
+    background: #ff4081;
+    color: #ffffff;
+  }
+
+  .title {
+    color: #ffffff;
+  }
+
+  .subtitle {
+    color: #230b0b;
+  }
+}
+
+.log-out {
+  //color: #f44336;
+  mat-list-item {
+    color: #f44336;
+  }
+}
